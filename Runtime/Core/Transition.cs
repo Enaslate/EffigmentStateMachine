@@ -13,5 +13,7 @@ namespace Effigment.StateMachine.Core
             From = from;
             To = to;
         }
+
+        public virtual bool CanTransition() => true;
     }
 }

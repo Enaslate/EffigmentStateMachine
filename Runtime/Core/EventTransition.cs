@@ -1,0 +1,22 @@
+namespace Effigment.StateMachine.Core
+{
+    /// <summary>
+    /// Contains data for transition by event with optional condition guard
+    /// </summary>
+    public class EventTransition : Transition
+    {
+        public string Id { get; protected set; }
+
+        private ICondition _condition;
+
+        public EventTransition(IState from, IState to, string id, ICondition condition = null)
+            : base(from, to)
+        {
+            Id = id;
+            _condition = condition;
+        }
+
+        public override bool CanTransition() =>
+            _condition?.Evaluate() ?? true;
+    }
+}

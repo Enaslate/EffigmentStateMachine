@@ -5,12 +5,14 @@ namespace Effigment.StateMachine.Core
     /// </summary>
     public class ConditionTransition : Transition
     {
-        public ICondition Condition { get; private set; }
+        private ICondition _condition;
 
         public ConditionTransition(IState from, IState to, ICondition condition)
             : base(from, to)
         {
-            Condition = condition;
+            _condition = condition;
         }
+
+        public override bool CanTransition() => _condition.Evaluate();
     }
 }

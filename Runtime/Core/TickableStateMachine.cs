@@ -35,7 +35,7 @@ namespace Effigment.StateMachine.Core
         {
             foreach (var transition in _transitions)
             {
-                if (transition.From == Current && transition.Condition.Evaluate())
+                if (transition.From == Current && transition.CanTransition())
                 {
                     ChangeStateTo(transition.To);
                     break;
