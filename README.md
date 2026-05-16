@@ -39,7 +39,7 @@ public class IdleState : IState
 ~~~csharp
 var fsm = new ManualStateMachine();
 fsm.ChangeState(new IdleState());           // simple switch
-fsm.ChangeState(currentState, force: true); // restart current state
+fsm.ChangeState(fsm.Current, force: true); // restart current state
 ~~~
 
 - EventStateMachine – react to events
