@@ -1,4 +1,3 @@
-using Effigment.StateMachine.Transitions;
 using System.Collections.Generic;
 
 namespace Effigment.StateMachine.Core.Machines
@@ -6,11 +5,11 @@ namespace Effigment.StateMachine.Core.Machines
     /// <summary>
     /// State machine with transitions checked while tick
     /// </summary>
-    public class TickableStateMachine : StateMachineBase
+    public class TickableStateMachine : TransitionStateMachine
     {
-        protected List<ConditionTransition> _transitions;
+        protected List<Transition> _transitions;
 
-        public TickableStateMachine(List<ConditionTransition> transitions = null, IState initialeState = null)
+        public TickableStateMachine(List<Transition> transitions = null, IState initialeState = null)
             : base(initialeState)
         {
             _transitions = transitions ?? new();
@@ -26,9 +25,14 @@ namespace Effigment.StateMachine.Core.Machines
             Current.Update(deltaTime);
         }
 
-        public void AddTransition(ConditionTransition transition)
+        public override void AddTransition(Transition transition)
         {
             _transitions.Add(transition);
+        }
+
+        public override void RemoveTransition(Transition transition)
+        {
+            _transitions.Remove(transition);
         }
 
         protected void UpdateTransitions()

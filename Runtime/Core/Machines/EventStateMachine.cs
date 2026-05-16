@@ -1,4 +1,3 @@
-using Effigment.StateMachine.Transitions;
 using System.Collections.Generic;
 
 namespace Effigment.StateMachine.Core.Machines
@@ -6,11 +5,12 @@ namespace Effigment.StateMachine.Core.Machines
     /// <summary>
     /// State machine with transitions by event
     /// </summary>
-    public class EventStateMachine : StateMachineBase
+    public class EventStateMachine : TransitionStateMachine
     {
-        private Dictionary<string, List<EventTransition>> _events = new();
+        private Dictionary<string, List<Transition>> _events = new();
 
-        public EventStateMachine(IState initialeState = null) : base(initialeState)
+        public EventStateMachine(IState initialeState = null)
+            : base(initialeState)
         {
         }
 
@@ -25,17 +25,17 @@ namespace Effigment.StateMachine.Core.Machines
             }
         }
 
-        public void AddTransition(EventTransition transition)
+        public override void AddTransition(Transition transition)
         {
             var id = transition.Id;
             
             if (!_events.ContainsKey(id))
-                _events[id] = new List<EventTransition>();
+                _events[id] = new List<Transition>();
             
             _events[id].Add(transition);
         }
 
-        public void RemoveTransition(EventTransition transition)
+        public override void RemoveTransition(Transition transition)
         {
             var id = transition.Id;
             
@@ -45,17 +45,6 @@ namespace Effigment.StateMachine.Core.Machines
 
             if (_events[id].Count == 0)
                 _events.Remove(id);
-        }
-
-        protected bool TryTransition(EventTransition transition)
-        {
-            if (Current == transition.From && transition.CanTransition())
-            {
-                ChangeStateTo(transition.To);
-                return true;
-            }
-
-            return false;
         }
     }
 }

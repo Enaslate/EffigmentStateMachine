@@ -7,14 +7,11 @@ namespace Effigment.StateMachine.Transitions
     /// </summary>
     public class EventTransition : Transition
     {
-        public string Id { get; protected set; }
-
         private ICondition _condition;
 
         public EventTransition(IState from, IState to, string id, ICondition condition = null)
-            : base(from, to)
+            : base(from, to, id)
         {
-            Id = id;
             _condition = condition;
         }
 
