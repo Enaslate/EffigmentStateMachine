@@ -10,9 +10,8 @@ namespace Effigment.StateMachine.Core.Machines
     {
         private Dictionary<string, List<EventTransition>> _events = new();
 
-        public EventStateMachine(IState initialeState)
+        public EventStateMachine(IState initialeState = null) : base(initialeState)
         {
-            ChangeStateTo(initialeState);
         }
 
         public void Send(string id)

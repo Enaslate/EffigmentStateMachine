@@ -10,10 +10,9 @@ namespace Effigment.StateMachine.Core.Machines
     {
         protected List<ConditionTransition> _transitions;
 
-        public TickableStateMachine(IState initialeState, List<ConditionTransition> transitions = null)
+        public TickableStateMachine(List<ConditionTransition> transitions = null, IState initialeState = null)
+            : base(initialeState)
         {
-            Current = initialeState;
-            Current?.Enter();
             _transitions = transitions ?? new();
         }
 
