@@ -3,15 +3,13 @@ using System.Linq;
 
 namespace Effigment.StateMachine.Conditions
 {
-    public class AndCondition : ICondition
+    /// <summary>
+    /// Checks if all conditions is true
+    /// </summary>
+    public class AndCondition : CompositeCondition
     {
-        private ICondition[] _conditions;
+        public AndCondition(params ICondition[] conditions) : base(conditions) { }
 
-        public AndCondition(params ICondition[] conditions)
-        {
-            _conditions = conditions;
-        }
-
-        public bool Evaluate() => _conditions.All(c => c.Evaluate());
+        public override bool Evaluate() => _conditions.All(c => c.Evaluate());
     }
 }
