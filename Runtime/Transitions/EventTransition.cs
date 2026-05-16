@@ -1,4 +1,6 @@
-namespace Effigment.StateMachine.Core
+using Effigment.StateMachine.Core;
+
+namespace Effigment.StateMachine.Transitions
 {
     /// <summary>
     /// Contains data for transition by event with optional condition guard

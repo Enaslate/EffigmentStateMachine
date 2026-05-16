@@ -1,6 +1,7 @@
+using Effigment.StateMachine.Transitions;
 using System.Collections.Generic;
 
-namespace Effigment.StateMachine.Core
+namespace Effigment.StateMachine.Core.Machines
 {
     /// <summary>
     /// State machine with transitions by event

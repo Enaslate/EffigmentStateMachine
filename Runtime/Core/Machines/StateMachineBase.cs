@@ -1,4 +1,4 @@
-﻿namespace Effigment.StateMachine.Core
+﻿namespace Effigment.StateMachine.Core.Machines
 {
 	public class StateMachineBase
 	{
