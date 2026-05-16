@@ -4,7 +4,7 @@
 	{
 		public IState Current { get; protected set; }
 
-        protected void Change(IState state)
+        protected void ChangeStateTo(IState state)
 		{
 			if (Current != state)
 				Current?.Exit();

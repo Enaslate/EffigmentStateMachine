@@ -11,7 +11,7 @@ namespace Effigment.StateMachine.Core
         /// <param name="state">Target state</param>
         public void ChangeState(IState state)
         {
-            Change(state);
+            ChangeStateTo(state);
         }
     }
 }
