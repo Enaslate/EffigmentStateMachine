@@ -15,10 +15,6 @@ namespace Effigment.StateMachine.Conditions
             _predicate = predicate;
         }
 
-        /// <summary>
-        /// Check the predicate
-        /// </summary>
-        /// <returns>Result of predicate</returns>
         public bool Evaluate() => _predicate.Invoke();
     }
 }
