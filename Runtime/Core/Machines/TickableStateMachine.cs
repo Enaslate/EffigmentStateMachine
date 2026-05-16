@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Effigment.StateMachine.Core.Machines
@@ -22,6 +23,9 @@ namespace Effigment.StateMachine.Core.Machines
         {
             UpdateTransitions();
 
+            if (Current == null)
+                throw new ArgumentNullException();
+
             Current.Update(deltaTime);
         }
 
@@ -39,11 +43,8 @@ namespace Effigment.StateMachine.Core.Machines
         {
             foreach (var transition in _transitions)
             {
-                if (transition.From == Current && transition.CanTransition())
-                {
-                    ChangeStateTo(transition.To);
+                if (TryTransition(transition))
                     break;
-                }
             }
         }
     }
