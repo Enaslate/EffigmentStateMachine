@@ -7,13 +7,11 @@ namespace Effigment.StateMachine.Core
     {
         public IState From { get; private set; }
         public IState To { get; private set; }
-        public ICondition Condition { get; private set; }
 
-        public Transition(IState from, IState to, ICondition condition)
+        public Transition(IState from, IState to)
         {
             From = from;
             To = to;
-            Condition = condition;
         }
     }
 }

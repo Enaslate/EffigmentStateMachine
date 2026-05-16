@@ -7,9 +7,9 @@ namespace Effigment.StateMachine.Core
     /// </summary>
     public class TickableStateMachine : StateMachineBase
     {
-        protected List<Transition> _transitions;
+        protected List<ConditionTransition> _transitions;
 
-        public TickableStateMachine(IState initialeState, List<Transition> transitions = null)
+        public TickableStateMachine(IState initialeState, List<ConditionTransition> transitions = null)
         {
             Current = initialeState;
             Current?.Enter();
@@ -26,7 +26,7 @@ namespace Effigment.StateMachine.Core
             Current.Update(deltaTime);
         }
 
-        public void AddTransition(Transition transition)
+        public void AddTransition(ConditionTransition transition)
         {
             _transitions.Add(transition);
         }
