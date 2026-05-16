@@ -1,5 +1,8 @@
 namespace Effigment.StateMachine.Core
 {
+    /// <summary>
+    /// Contains data for transition
+    /// </summary>
     public class Transition
     {
         public IState From { get; private set; }
