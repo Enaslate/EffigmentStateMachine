@@ -1,10 +1,17 @@
 {
-  "name": "com.effigment.statemachine",
-  "displayName": "Effigment State Machine",
-  "version": "0.2.4",
-  "unity": "2022.3",
-  "description": "State Machine for unity",
-  "author": {
-    "name": "Effigment"
-  }
+    "name": "com.effigment.statemachine",
+    "displayName": "Effigment State Machine",
+    "version": "0.2.4",
+    "unity": "2022.3",
+    "description": "State Machine for unity",
+    "author": {
+        "name": "Effigment"
+    },
+    "samples": [
+        {
+            "displayName": "State Machine Examples",
+            "description": "Examples usage state machines.",
+            "path": "Samples~/StateMachineExamples"
+        }
+    ]
 }
