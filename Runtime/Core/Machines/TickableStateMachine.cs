@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Effigment.StateMachine.Core.Machines
 {
@@ -13,7 +14,7 @@ namespace Effigment.StateMachine.Core.Machines
         public TickableStateMachine(List<Transition> transitions = null, IState initialeState = null)
             : base(initialeState)
         {
-            _transitions = transitions ?? new();
+            _transitions = transitions?.ToList() ?? new();
         }
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace Effigment.StateMachine.Core.Machines
             UpdateTransitions();
 
             if (Current == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(Current));
 
             Current.Update(deltaTime);
         }

@@ -13,6 +13,7 @@ namespace Effigment.StateMachine.Core.Machines
         /// Change state if state is not current
         /// </summary>
         /// <param name="state">Target state</param>
+        /// <param name="force">True for force Enter the same state</param>
         public void ChangeState(IState state, bool force = false)
         {
             ChangeStateTo(state, force);

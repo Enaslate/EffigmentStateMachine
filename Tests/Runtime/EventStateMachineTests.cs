@@ -1,7 +1,9 @@
+using Effigment.StateMachine.Core;
 using Effigment.StateMachine.Core.Machines;
 using Effigment.StateMachine.Tests.Runtime.Stubs;
 using Effigment.StateMachine.Transitions;
 using NUnit.Framework;
+using System;
 
 namespace Effigment.StateMachine.Tests.Runtime
 {
@@ -54,6 +56,14 @@ namespace Effigment.StateMachine.Tests.Runtime
             _machine.Send(toThird.Id);
 
             Assert.That(_machine.Current, Is.EqualTo(_firstState));
+        }
+
+        [Test]
+        public void AddTransition_WhenIdIsNull_ThrowsArgumentNullExeption()
+        {
+            var transition = new Transition(_firstState, _secondState);
+            
+            Assert.Catch<ArgumentNullException>(() => _machine.AddTransition(transition));
         }
     }
 }

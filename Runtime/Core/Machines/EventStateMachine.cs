@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Effigment.StateMachine.Core.Machines
@@ -29,6 +30,9 @@ namespace Effigment.StateMachine.Core.Machines
         {
             var id = transition.Id;
             
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentNullException(nameof(id));
+
             if (!_events.ContainsKey(id))
                 _events[id] = new List<Transition>();
             

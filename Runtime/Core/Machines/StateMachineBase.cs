@@ -13,7 +13,10 @@ namespace Effigment.StateMachine.Core.Machines
 		public StateMachineBase(IState initialState = null)
 		{
 			if (initialState != null)
+			{
 				SetInitialState(initialState);
+				Reset();
+			}
 		}
 
 		/// <summary>
@@ -23,7 +26,7 @@ namespace Effigment.StateMachine.Core.Machines
 		public virtual void Reset()
 		{
 			if (_initialState == null)
-				throw new ArgumentNullException();
+				throw new ArgumentNullException(nameof(_initialState));
 
 			ChangeStateTo(_initialState);
 		}
@@ -38,6 +41,8 @@ namespace Effigment.StateMachine.Core.Machines
 
         protected void ChangeStateTo(IState state, bool force = false)
 		{
+			if (state == null) throw new ArgumentNullException(nameof(state));
+
 			if (!force && Current == state) return;
 
 			Current?.Exit();
