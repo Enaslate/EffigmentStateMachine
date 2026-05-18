@@ -13,7 +13,7 @@ Via Git URL (Unity Package Manager)
 Add the following line to Packages/manifest.json:
 
 ~~~json
-"com.effigment.statemachine": "https://github.com/Enaslate/StateMachineCore.git"
+"com.effigment.statemachine": "https://github.com/Enaslate/EffigmentStateMachine.git"
 ~~~
 
 Or open Package Manager -> Add package from git URL -> paste the same URL.
