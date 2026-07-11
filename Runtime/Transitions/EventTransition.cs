@@ -9,8 +9,8 @@ namespace Effigment.StateMachine.Transitions
     {
         private ICondition _condition;
 
-        public EventTransition(IState from, IState to, string id, ICondition condition = null)
-            : base(from, to, id)
+        public EventTransition(IState from, IState to, IKey key, ICondition condition = null)
+            : base(from, to, key)
         {
             _condition = condition;
         }

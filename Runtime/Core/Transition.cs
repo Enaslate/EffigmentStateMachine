@@ -8,7 +8,7 @@ namespace Effigment.StateMachine.Core
         /// <summary>
         /// Transition key
         /// </summary>
-        public string Id { get; private set; }
+        public IKey Key { get; private set; }
 
         /// <summary>
         /// The state from which the transition occurs
@@ -21,11 +21,11 @@ namespace Effigment.StateMachine.Core
         /// </summary>
         public IState To { get; private set; }
 
-        public Transition(IState from, IState to, string id = null)
+        public Transition(IState from, IState to, IKey key = null)
         {
             From = from;
             To = to;
-            Id = id;
+            Key = key;
         }
 
         public virtual bool CanTransition() => true;

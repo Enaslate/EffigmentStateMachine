@@ -1,5 +1,6 @@
 using Effigment.StateMachine.Core;
 using Effigment.StateMachine.Core.Machines;
+using Effigment.StateMachine.Runtime.Stubs;
 using Effigment.StateMachine.Tests.Runtime.Stubs;
 using Effigment.StateMachine.Transitions;
 using NUnit.Framework;
@@ -23,8 +24,8 @@ namespace Effigment.StateMachine.Tests.Runtime
             _machine = new EventStateMachine();
             _firstState = new TestState();
             _secondState = new TestState();
-            _toFirstState = new EventTransition(null, _firstState, "toFirst");
-            _toSecondState = new EventTransition(_firstState, _secondState, "toSecond");
+            _toFirstState = new EventTransition(null, _firstState, new TestKey("toFirst"));
+            _toSecondState = new EventTransition(_firstState, _secondState, new TestKey("toSecond"));
             _machine.AddTransition(_toFirstState);
             _machine.AddTransition(_toSecondState);
         }
@@ -32,7 +33,7 @@ namespace Effigment.StateMachine.Tests.Runtime
         [Test]
         public void Send_FromAnyState_Succusses()
         {
-            _machine.Send(_toFirstState.Id);
+            _machine.Send(_toFirstState.Key);
 
             Assert.That(_machine.Current, Is.EqualTo(_toFirstState.To));
         }
@@ -40,8 +41,8 @@ namespace Effigment.StateMachine.Tests.Runtime
         [Test]
         public void Send_FromCurrent_Successes()
         {
-            _machine.Send(_toFirstState.Id);
-            _machine.Send(_toSecondState.Id);
+            _machine.Send(_toFirstState.Key);
+            _machine.Send(_toSecondState.Key);
 
             Assert.That(_machine.Current, Is.EqualTo(_toSecondState.To));
         }
@@ -50,10 +51,10 @@ namespace Effigment.StateMachine.Tests.Runtime
         public void Send_WhenCurrentIsNotFrom_Successes()
         {
             var thirdState = new TestState();
-            var toThird = new EventTransition(_secondState, thirdState, "toThird");
+            var toThird = new EventTransition(_secondState, thirdState, new TestKey("toThird"));
 
-            _machine.Send(_toFirstState.Id);
-            _machine.Send(toThird.Id);
+            _machine.Send(_toFirstState.Key);
+            _machine.Send(toThird.Key);
 
             Assert.That(_machine.Current, Is.EqualTo(_firstState));
         }

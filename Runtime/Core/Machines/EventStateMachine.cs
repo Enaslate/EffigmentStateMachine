@@ -8,14 +8,14 @@ namespace Effigment.StateMachine.Core.Machines
     /// </summary>
     public class EventStateMachine : TransitionStateMachine
     {
-        private Dictionary<string, List<Transition>> _events = new();
+        private Dictionary<IKey, List<Transition>> _events = new();
 
         public EventStateMachine(IState initialeState = null)
             : base(initialeState)
         {
         }
 
-        public void Send(string id)
+        public void Send(IKey id)
         {
             if (!_events.TryGetValue(id, out var transitions)) return;
 
@@ -28,20 +28,20 @@ namespace Effigment.StateMachine.Core.Machines
 
         public override void AddTransition(Transition transition)
         {
-            var id = transition.Id;
+            var key = transition.Key;
             
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException(nameof(id));
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
 
-            if (!_events.ContainsKey(id))
-                _events[id] = new List<Transition>();
+            if (!_events.ContainsKey(key))
+                _events[key] = new List<Transition>();
             
-            _events[id].Add(transition);
+            _events[key].Add(transition);
         }
 
         public override void RemoveTransition(Transition transition)
         {
-            var id = transition.Id;
+            var id = transition.Key;
             
             if (!_events.ContainsKey(id)) return;
 
