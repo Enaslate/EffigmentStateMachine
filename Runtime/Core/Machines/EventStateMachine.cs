@@ -6,7 +6,7 @@ namespace Effigment.StateMachine.Core.Machines
     /// <summary>
     /// State machine with transitions by event
     /// </summary>
-    public class EventStateMachine : TransitionStateMachine
+    public class EventStateMachine : TransitionStateMachine, IEventDispatcher
     {
         private Dictionary<IKey, List<Transition>> _events = new();
 
