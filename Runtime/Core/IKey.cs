@@ -2,7 +2,7 @@
 
 namespace Effigment.StateMachine.Core
 {
-    public interface IKey : IEquatable<IKey>
+    public interface IKey
     {
         string Key { get; }
     }
